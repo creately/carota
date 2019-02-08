@@ -21,6 +21,8 @@ var makeEditCommand = function(doc, start, count, words) {
     };
 };
 
+var defaultFormatting;
+
 var makeTransaction = function(perform) {
     var commands = [];
     var log = function(command) {
@@ -306,7 +308,7 @@ var prototype = node.derive({
         var oldLength = this.frame.length;
 
         this.spliceWordsWithRuns(startWord.index, (endWord.index - startWord.index) + 1,
-            per(prefix).concat(text).concat(suffix).per(runs.consolidate()).all(), takeFocus);
+            per(prefix).concat(text).concat(suffix).per(runs.consolidate( this.defaultFormatting )).all(), takeFocus);
 
         return this.frame ? (this.frame.length - oldLength) : 0;
     },
@@ -490,7 +492,7 @@ exports = module.exports = function() {
     doc.editFilters = [codes.editFilter];
     doc.load([]);
     doc.setDefaultStyles = function( val ){
-        runs.defaultFormatting = val;
+        this.defaultFormatting = val;
     }
     return doc;
 };

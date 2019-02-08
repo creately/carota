@@ -125,7 +125,7 @@ newLines.forEach(function(name) {
     isNewLine[name] = true;
 });
 
-exports.parse = function(html, classes) {
+exports.parse = function(html, classes, defaultFormatting) {
     var root = html;
     if (typeof root === 'string') {
         root = document.createElement('div');
@@ -133,7 +133,7 @@ exports.parse = function(html, classes) {
     }
 
     var result = [], inSpace = true;
-    var cons = per(runs.consolidate()).into(result);
+    var cons = per(runs.consolidate( defaultFormatting )).into(result);
     var emit = function(text, formatting) {
         cons.submit(Object.create(formatting, {
             text: { value: text }
@@ -193,12 +193,12 @@ exports.parse = function(html, classes) {
     return result;
 };
 
-exports.html = function( texts ) {
+exports.html = function( texts, defaultFormatting ) {
     return texts.map( obj => {
         var span = document.createElement( 'span' );
         Object.keys(obj).forEach(function(k, i) {
             if ( k === 'text' ) {
-                var brAdded = obj[ k ].replace(/\n/g, '<br>');
+                var brAdded = obj[ k ].replace(/\n/g, '<br/>');
                 span.innerHTML = brAdded;
             }
             if ( k === 'bold' ) {            
