@@ -186,6 +186,7 @@ var prototype = node.derive({
                                 script: text.run.script || this.defaultFormatting.script,
                                 link: text.run.link,
                                 backgroundColor: text.run.backgroundColor,
+                                fillColor: text.run.fillColor,
                             }
                         })
                         left = left + text.width;
