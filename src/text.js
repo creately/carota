@@ -158,7 +158,6 @@ exports.draw = function(ctx, str, formatting, left, baseline, width, ascent, des
         ctx.fillStyle = formatting.fillColor;
         var pad = 0.2;
         ctx.fillRect(x-pad, y-pad, width + 2* pad, height + 2* pad);
-        ctx.fill();
     }
     exports.applyRunStyle(ctx, formatting);
     switch (formatting.script) {
