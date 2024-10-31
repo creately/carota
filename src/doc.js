@@ -173,6 +173,9 @@ var prototype = node.derive({
                         words.push({
                             baseline: line.baseline,
                             left,
+                            top: line.baseline - text.ascent,
+                            width: word.width,
+                            height: text.ascent + text.descent,
                             content: {
                                 text: he.encode( text.run.text.trim()) + '&#160;'.repeat( word.space.length ),
                                 size: text.run.size || this.defaultFormatting.size,
