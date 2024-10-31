@@ -173,6 +173,9 @@ var prototype = node.derive({
                         words.push({
                             baseline: line.baseline,
                             left,
+                            top: line.baseline - text.ascent,
+                            width: word.width,
+                            height: text.ascent + text.descent,
                             content: {
                                 text: he.encode( text.run.text.trim()) + '&#160;'.repeat( word.space.length ),
                                 size: text.run.size || this.defaultFormatting.size,
@@ -186,6 +189,7 @@ var prototype = node.derive({
                                 script: text.run.script || this.defaultFormatting.script,
                                 link: text.run.link,
                                 backgroundColor: text.run.backgroundColor,
+                                fillColor: text.run.fillColor,
                             }
                         })
                         left = left + text.width;

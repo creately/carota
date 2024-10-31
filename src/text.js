@@ -151,6 +151,14 @@ exports.measure = function(str, formatting) {
 
 exports.draw = function(ctx, str, formatting, left, baseline, width, ascent, descent) {
     exports.prepareContext(ctx);
+    if ( formatting.fillColor ) {
+        const height = ascent + descent;
+        const x = left;
+        const y = baseline - ascent;
+        ctx.fillStyle = formatting.fillColor;
+        var pad = 0.2;
+        ctx.fillRect(x-pad, y-pad, width + 2* pad, height + 2* pad);
+    }
     exports.applyRunStyle(ctx, formatting);
     switch (formatting.script) {
         case 'super':
